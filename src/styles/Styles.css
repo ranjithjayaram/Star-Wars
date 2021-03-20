@@ -1,0 +1,24 @@
+.header{
+    width: 100%;
+    height: 60px;
+    background-color: #c5c5c5;
+    display: flex;
+}
+.sidebar{
+    width: 20vw;
+}
+
+.MuiDrawer-paper {
+    top: 65px !important
+}
+
+.listItem{
+    border-bottom: black 2px solid;
+    padding: 10px 0px;
+}
+.MuiListItemText-root{
+    text-align: center;
+}
+.MuiTypography-body1{
+    font-size: 1.2rem !important;
+}
