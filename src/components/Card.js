@@ -2,7 +2,6 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 const Card = data => {
     const { name, ...objProp } = data.item;
-    console.log(objProp);
     return (
         <div className="card">
             <div className="cardhead">

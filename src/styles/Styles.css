@@ -34,7 +34,6 @@
 }
 .summarylayout{
     display: flex;
-    background-color: rgb(230, 230, 230);
     flex-wrap: wrap;
 }
 .card{
@@ -65,4 +64,19 @@
 }
 .cardbottom{
     min-height: 20px
+}
+.pagination{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:darkgrey;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.paginationbtn{
+    padding: 2px;
+    margin: 3px
 }

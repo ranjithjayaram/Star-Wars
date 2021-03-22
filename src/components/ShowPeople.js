@@ -2,36 +2,48 @@ import React, { useEffect, useState } from "react";
 import '../styles/Styles.css';
 import Api from '../services/ApiService';
 import SummaryCards from './SummaryCards';
+import Pagination from './Pagination';
 
 const ShowPeople = data => {
     const [people, setpeople] = useState();
-    const setPeopleData= people=>{
-       let newObj= people.map(obj=>{
-           console.log(obj)
-            let peopleObj={};
-            peopleObj.name=obj.name;
+    const [currPage, setCurrPage] = useState(data.page);
+    const [pagination, setPagination] = useState();
+    const [nextPage, setNextPage] = useState(false);
+    const [prevPage, setPrevPage] = useState(false);
+    const setPeopleData = people => {
+        let newObj = people.map(obj => {
+            let peopleObj = {};
+            peopleObj.name = obj.name;
             peopleObj.Height = obj.height;
-            peopleObj.BirthYear= obj.birth_year;
-            peopleObj.Eye= obj.eye_color;
-            peopleObj.Gender= obj.gender
+            peopleObj.BirthYear = obj.birth_year;
+            peopleObj.Eye = obj.eye_color;
+            peopleObj.Gender = obj.gender
             return peopleObj;
         })
         setpeople(newObj);
     }
     useEffect(() => {
-        Api.getAllPeople(1).then(data => {
-            setPeopleData(data.results)
+        Api.getAllPeople(currPage).then(res => {
+            setPeopleData(res.results);
+            setPagination(Math.ceil(res.count));
         }).catch(err => {
             console.log(err)
         })
-    }, data.page)
+    }, [currPage])
 
     return (
 
-        <div style={{width:'80vw', flex:'auto'}}>
+        <div style={{ width: '80vw', flex: 'auto' }}>
             {
                 people && (
-                    <SummaryCards data={people}></SummaryCards>
+                    <div>
+                        <SummaryCards data={people}></SummaryCards>
+                        {
+                            pagination && (
+                                <Pagination pages={pagination} currPage={currPage} setpageNo={setCurrPage}></Pagination>
+                            )
+                        }
+                    </div>
                 )
             }
         </div>
