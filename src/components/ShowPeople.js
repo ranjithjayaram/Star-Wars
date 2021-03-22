@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import '../styles/Styles.css';
 import Api from '../services/ApiService';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import SummaryCards from './SummaryCards';
 
 const ShowPeople = data => {
-    const [people, setPeople] = useState();
+    const [people, setpeople] = useState();
+    const setPeopleData= people=>{
+       let newObj= people.map(obj=>{
+           console.log(obj)
+            let peopleObj={};
+            peopleObj.name=obj.name;
+            peopleObj.Height = obj.height;
+            peopleObj.BirthYear= obj.birth_year;
+            peopleObj.Eye= obj.eye_color;
+            peopleObj.Gender= obj.gender
+            return peopleObj;
+        })
+        setpeople(newObj);
+    }
     useEffect(() => {
         Api.getAllPeople(1).then(data => {
-            console.log(data)
-            setPeople(data.results);
+            setPeopleData(data.results)
         }).catch(err => {
             console.log(err)
         })
@@ -18,16 +28,10 @@ const ShowPeople = data => {
 
     return (
 
-        <div>
+        <div style={{width:'80vw', flex:'auto'}}>
             {
                 people && (
-                    people.map((p) => (
-                        <div className="listItem">
-                            <ListItem button key={p.name} >
-                                <ListItemText primary={p.name} />
-                            </ListItem>
-                        </div>
-                    ))
+                    <SummaryCards data={people}></SummaryCards>
                 )
             }
         </div>

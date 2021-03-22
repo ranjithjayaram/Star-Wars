@@ -12,5 +12,20 @@ export default {
         return axios.get(API_BASE+APIS.STARWAR_API.PATHS.AllVehicle(page)).then(res=>{
             return res.data;
         })
-    }
+    },
+    getAllShip:(page)=>{
+        return axios.get(API_BASE+APIS.STARWAR_API.PATHS.AllShips(page)).then(res=>{
+            return res.data;
+        })
+    },
+    getAllSpecies:(page)=>{
+        return axios.get(API_BASE+APIS.STARWAR_API.PATHS.AllSpecies(page)).then(res=>{
+            return res.data;
+        })
+    },
+    getAllPlanets:(page)=>{
+        return axios.get(API_BASE+APIS.STARWAR_API.PATHS.AllPlanets(page)).then(res=>{
+            return res.data;
+        })
+    },
 }

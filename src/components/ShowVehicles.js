@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../styles/Styles.css';
 import Api from '../services/ApiService';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import SummaryCards from './SummaryCards';
+
 const ShowVehicles = data => {
     const [vehicles, setVehicles] = useState();
     const setVehicleData= vehicles=>{

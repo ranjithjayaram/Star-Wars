@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import '../styles/Styles.css';
 import Api from '../services/ApiService';
 import ShowPeople from './ShowPeople';
-import ShowVehicles from './ShowVehicles'
+import ShowVehicles from './ShowVehicles';
+import ShowStarship from './ShowStarship';
+import ShowSpecies from './ShowSpecies';
+import ShowPlanets from './ShowPlanets';
 const Summary = data => {
     
     const [pageNo, setPageNo] = useState(1);
-    //console.log(data.menuSelected)
     switch(data.menuSelected){
         case 'People':
             return(
@@ -15,17 +17,17 @@ const Summary = data => {
         break;
         case 'Planets':
             return(
-                <ShowPeople page={pageNo}></ShowPeople>
+                <ShowPlanets page={pageNo}></ShowPlanets>
             )
         break;
         case 'Species':
             return(
-                <ShowPeople page={pageNo}></ShowPeople>
+                <ShowSpecies page={pageNo}></ShowSpecies>
             )
         break;
         case 'Starship':
             return(
-                <ShowPeople page={pageNo}></ShowPeople>
+                <ShowStarship page={pageNo}></ShowStarship>
             )
         break;
         case 'Vehicle':
