@@ -37,7 +37,7 @@
     flex-wrap: wrap;
 }
 .card{
-    width: 21vw;
+    width: 22vw;
     padding: 10px;
     margin: 10px;
     border: 1px black solid;
@@ -79,4 +79,30 @@
 .paginationbtn{
     padding: 2px;
     margin: 3px
+}
+.searchbar{
+    width: 100%;
+    height: 60px;
+    background-color:azure;
+    padding: 10px;
+    display: flex;
+}
+.MuiInput-root {
+    position: relative;
+    border: 1px black solid;
+    margin: 10px 50px;
+    height: 30px;
+}
+.searchbar button{
+    width: 95px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color:wheat;
+}
+.searchbar button:focus{
+    outline: none;
+}
+.searchbar button:hover{
+    outline: none;
 }

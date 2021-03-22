@@ -3,9 +3,11 @@ import '../styles/Styles.css';
 import Api from '../services/ApiService';
 import SummaryCards from './SummaryCards';
 import Pagination from './Pagination';
+import Searchbar from './Searchbar';
 
 const ShowSpecies = data => {
     const [species, setspecies] = useState();
+    const [displaySpecies, setDisplaySpecies] = useState();
     const [currPage, setCurrPage] = useState(data.page);
     const [pagination, setPagination] = useState();
     const [nextPage, setNextPage] = useState(false);
@@ -21,6 +23,19 @@ const ShowSpecies = data => {
             return speciesObj;
         })
         setspecies(newObj);
+        setDisplaySpecies(newObj)
+    }
+    const searchText = text => {
+        if (text) {
+            const newP = species.filter(element => {
+                return JSON.stringify(element).includes(text)
+            });
+            setDisplaySpecies(newP);
+        }
+
+    }
+    const reset = () => {
+        setDisplaySpecies(species)
     }
     useEffect(() => {
         Api.getAllSpecies(currPage).then(res => {
@@ -35,9 +50,10 @@ const ShowSpecies = data => {
 
         <div style={{ width: '80vw', flex: 'auto' }}>
             {
-                species && (
+                displaySpecies && (
                     <div>
-                        <SummaryCards data={species}></SummaryCards>
+                        <Searchbar searchText={searchText} reset={reset}></Searchbar>
+                        <SummaryCards data={displaySpecies}></SummaryCards>
                         {
                             pagination && (
                                 <Pagination pages={pagination} currPage={currPage} setpageNo={setCurrPage}></Pagination>

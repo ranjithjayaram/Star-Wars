@@ -3,9 +3,11 @@ import '../styles/Styles.css';
 import Api from '../services/ApiService';
 import SummaryCards from './SummaryCards';
 import Pagination from './Pagination';
+import Searchbar from './Searchbar';
 
 const ShowVehicles = data => {
     const [vehicles, setVehicles] = useState();
+    const [displayVehicles, setDisplayVehicles]= useState();
     const [currPage, setCurrPage] = useState(data.page)
     const [pagination, setPagination] = useState();
     const [nextPage, setNextPage] = useState(false);
@@ -22,6 +24,19 @@ const ShowVehicles = data => {
             return vehObj;
         })
         setVehicles(newVehicles);
+        setDisplayVehicles(newVehicles)
+    }
+    const searchText = text => {
+        if (text) {
+            const newP = vehicles.filter(element => {
+                return JSON.stringify(element).includes(text)
+            });
+            setDisplayVehicles(newP);
+        }
+
+    }
+    const reset = () => {
+        setDisplayVehicles(vehicles)
     }
     useEffect(() => {
         Api.getAllVehicle(currPage).then(res => {
@@ -36,10 +51,10 @@ const ShowVehicles = data => {
 
         <div style={{ width: '80vw', flex: 'auto' }}>
             {
-                vehicles && (
+                displayVehicles && (
                     <div>
-
-                        <SummaryCards data={vehicles}></SummaryCards>
+                        <Searchbar searchText={searchText} reset={reset}></Searchbar>
+                        <SummaryCards data={displayVehicles}></SummaryCards>
                         {
                             pagination && (
                                 <Pagination pages={pagination} currPage={currPage} setpageNo={setCurrPage}></Pagination>

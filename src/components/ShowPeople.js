@@ -3,9 +3,11 @@ import '../styles/Styles.css';
 import Api from '../services/ApiService';
 import SummaryCards from './SummaryCards';
 import Pagination from './Pagination';
+import Searchbar from './Searchbar';
 
 const ShowPeople = data => {
     const [people, setpeople] = useState();
+    const [displayPeople, setDisplayPeople]= useState();
     const [currPage, setCurrPage] = useState(data.page);
     const [pagination, setPagination] = useState();
     const [nextPage, setNextPage] = useState(false);
@@ -21,6 +23,19 @@ const ShowPeople = data => {
             return peopleObj;
         })
         setpeople(newObj);
+        setDisplayPeople(newObj)
+    }
+    const searchText= text=>{
+       if(text){
+        const newP= people.filter(element => {
+            return JSON.stringify(element).includes(text)
+        });
+        setDisplayPeople(newP);
+       }
+       
+    }
+    const reset=()=>{
+        setDisplayPeople(people)
     }
     useEffect(() => {
         Api.getAllPeople(currPage).then(res => {
@@ -35,9 +50,10 @@ const ShowPeople = data => {
 
         <div style={{ width: '80vw', flex: 'auto' }}>
             {
-                people && (
+                displayPeople && (
                     <div>
-                        <SummaryCards data={people}></SummaryCards>
+                        <Searchbar searchText={searchText} reset={reset}></Searchbar>
+                        <SummaryCards data={displayPeople}></SummaryCards>
                         {
                             pagination && (
                                 <Pagination pages={pagination} currPage={currPage} setpageNo={setCurrPage}></Pagination>

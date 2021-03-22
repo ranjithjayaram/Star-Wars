@@ -6,10 +6,20 @@ import ShowVehicles from './ShowVehicles';
 import ShowStarship from './ShowStarship';
 import ShowSpecies from './ShowSpecies';
 import ShowPlanets from './ShowPlanets';
-const Summary = data => {
+
+
+const Summary = data=>{
+    return(
+        <div>
+            {/* <Searchbar></Searchbar> */}
+            <SummaryPage menuSelected={data.menuSelected}></SummaryPage>
+        </div>
+        
+    )
     
+}
+const SummaryPage = data => {
     const [pageNo, setPageNo] = useState(1);
-    console.log(pageNo)
     switch(data.menuSelected){
         case 'People':
             return(
@@ -38,12 +48,7 @@ const Summary = data => {
         break;
 
     }
-    return (
-        <div className="summary">
-            This is Summary
-        </div>
-    )
+   
 }
-
 
 export default Summary;
