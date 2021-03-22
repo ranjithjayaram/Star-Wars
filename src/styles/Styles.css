@@ -22,3 +22,47 @@
 .MuiTypography-body1{
     font-size: 1.2rem !important;
 }
+.summary{
+    display: flex;
+    flex-grow: 1;
+    height: 90vh;
+    background-color: antiquewhite;
+}
+.layout{
+    display: flex;
+    flex-grow: 1;
+}
+.summarylayout{
+    display: flex;
+    background-color: rgb(230, 230, 230);
+    flex-wrap: wrap;
+}
+.card{
+    width: 21vw;
+    padding: 10px;
+    margin: 10px;
+    border: 1px black solid;
+    background-color: #847e7e;
+    display: flex;
+    flex-direction: column;
+}
+.cardhead{
+    border-bottom: 1px solid black;
+}
+.cardhead label{
+    float: left;
+    width: 85%;
+}
+.cardbody{
+    border-bottom: 1px solid black;
+    flex-grow: 1;
+}
+.cardprop{
+    font-size: small;
+    text-align: left;
+    display: flex;
+   
+}
+.cardbottom{
+    min-height: 20px
+}
